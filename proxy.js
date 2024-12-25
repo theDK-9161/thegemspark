@@ -4,13 +4,13 @@ const app = express();
 
 const unblocker = new Unblocker({ prefix: '/proxy/' });
 
-// This must be one of the first app.use() calls and must not be on a subdirectory to work properly
 app.use(unblocker);
 
 app.get('/', (req, res) => {
-  res.send('Welcome to the proxy server!');
+  res.send('Proxy server is running!');
 });
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Proxy server is running on port ${PORT}`);
 });
